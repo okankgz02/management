@@ -1,4 +1,4 @@
-package com.okankgz.management.repo;
+package com.okankgz.management.repository;
 
 import com.okankgz.management.entity.Issue;
 import org.springframework.data.jpa.repository.JpaRepository;
