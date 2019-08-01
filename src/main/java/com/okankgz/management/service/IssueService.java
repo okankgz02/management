@@ -1,5 +1,6 @@
 package com.okankgz.management.service;
 
+import com.okankgz.management.dto.IssueDto;
 import com.okankgz.management.entity.Issue;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,9 +8,11 @@ import org.springframework.data.domain.Pageable;
 public interface IssueService {
 
 
-    Issue save(Issue issue);
+    IssueDto save(IssueDto issue);
 
-    Issue getById(Long id);
+    IssueDto getById(Long id);
 
-    Page<Issue> getAllPageable(Pageable pageable);
+    Page<IssueDto> getAllPageable(Pageable pageable);
+
+    Boolean delete(IssueDto issue);
 }

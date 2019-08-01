@@ -1,5 +1,6 @@
 package com.okankgz.management.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
