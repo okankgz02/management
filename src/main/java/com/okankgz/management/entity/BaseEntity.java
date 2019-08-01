@@ -11,6 +11,7 @@ import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
+
 @Getter
 @Setter
 @MappedSuperclass  //bütün tablolarda ortak olmasını extend edilebilir olmasını sağlar

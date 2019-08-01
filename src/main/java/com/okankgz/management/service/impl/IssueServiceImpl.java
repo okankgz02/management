@@ -4,10 +4,13 @@ import com.okankgz.management.dto.IssueDto;
 import com.okankgz.management.entity.Issue;
 import com.okankgz.management.repository.IssueRepository;
 import com.okankgz.management.service.IssueService;
+import com.okankgz.management.util.TPage;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.Arrays;
 
 public class IssueServiceImpl implements IssueService {
 
@@ -34,7 +37,8 @@ public class IssueServiceImpl implements IssueService {
 
     return modelMapper.map(issueDb, IssueDto.class);
 
-    // Servisten sonraki hiç bir katmanda dtolar ile konusmayacagız ama servis ve servisten dısarı cıkarken api katmanında doğru entityleri dısarı cıkarmıyoruz.
+    // Servisten sonraki hiç bir katmanda dtolar ile konusmayacagız ama servis ve servisten dısarı
+    // cıkarken api katmanında doğru entityleri dısarı cıkarmıyoruz.
   }
 
   @Override
@@ -43,8 +47,13 @@ public class IssueServiceImpl implements IssueService {
   }
 
   @Override
-  public Page<IssueDto> getAllPageable(Pageable pageable) {
-    return null;
+  public TPage<IssueDto> getAllPageable(Pageable pageable) {
+
+    Page<Issue> data = issueRepository.findAll(pageable);
+    TPage page = new TPage<IssueDto>();
+    IssueDto[] dtos = modelMapper.map(data.getContent(), IssueDto[].class);
+    page.setStat(data,Arrays.asList(dtos));
+    return  page;
   }
 
   @Override
